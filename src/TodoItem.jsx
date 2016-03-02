@@ -2,8 +2,6 @@ var React = require('react');
 
 module.exports = React.createClass({
 render: function() {
-return <div>
-Some content
-</div>
+return <h1>Todo:</h1>
 }
 });
