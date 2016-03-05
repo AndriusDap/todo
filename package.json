@@ -36,6 +36,7 @@
     "react-addons-test-utils": "^0.14.7",
     "react-core": "0.0.0",
     "react-dom": "^0.14.7",
+    "react-onclickoutside": "^4.5.0",
     "react-tap-event-plugin": "^0.2.2",
     "serve": "^1.4.0"
   }
