@@ -1,24 +1,12 @@
 var React = require('react');
-var ContentAdd = require('material-ui/lib/svg-icons/content/add');
-var FloatingActionButton = require('material-ui/lib/floating-action-button');
 
-var Card = require('material-ui/lib/card');
-var FlatButton = require('material-ui/lib/flat-button');
-var TextField = require('material-ui/lib/text-field');
+var PlusFab = require('./PlusFab.jsx');
+var TodoWizard = require('./TodoWizard.jsx');
 
-var OnClickOutside = require('react-onclickoutside');
-
-var fabPosition = {
+var position = {
 	position: 'fixed',
 	right: '30px',
 	bottom: '30px'
-};
-
-var cardStyle = {
-	position: 'fixed',
-	right: '30px',
-	bottom: '30px',
-	width: '400px'
 };
 
 	
@@ -32,7 +20,6 @@ getInitialState: function() {
 },
 transform: function(e) {
 	if(this.touched) {
-		console.log("Stopping propagation");
 		e.stopPropagation();
 	}
 	this.setState({fab: this.touched == false});
@@ -43,38 +30,16 @@ clickDown: function() {
 clickUp: function() {
 	this.touched = false;
 },
-renderFab: function() {
-	return <FloatingActionButton 
-			style={fabPosition}
-			onMouseDown={this.clickDown}
-			onTouchStart={this.clickDown}
-			onMouseUp={this.clickUp} 
-			onTouchEnd={this.clickUp}>
-
-				<ContentAdd></ContentAdd>
-			</FloatingActionButton>
-},
-renderWizard: function() {
-	return  <div style={cardStyle}
+render: function() {
+	var Content = this.state.fab ? PlusFab : TodoWizard;
+	return  <div
 				onMouseDown={this.clickDown} 
 				onTouchStart={this.clickDown}
 				onMouseUp={this.clickUp}
-				onTouchEnd={this.clickUp}>
+				onTouchEnd={this.clickUp}
+				style={position}>
 
-				<Card.Card>
-					<Card.CardTitle>
-						<TextField hintText="Title"></TextField>
-					</Card.CardTitle>
-					<Card.CardText>
-						<TextField hintText="Task"></TextField>
-					</Card.CardText>
-					<Card.CardActions>
-						<FlatButton label="Lets do this!"></FlatButton>
-					</Card.CardActions>
-				</Card.Card>
-			</div>
-},
-render: function() {
-	return this.state.fab ? this.renderFab() : this.renderWizard();			
-}
+				<Content></Content>
+			 </div> 			
+	}
 });
