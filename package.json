@@ -4,8 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "browserify -t [ babelify --presets [ react ] ] web/src/app.js -o public/build/bundle.js",
-    "start": "npm run build && nodejs ./bin/www"
+    "build": "mkdir public/build && browserify -t [ babelify --presets [ react ] ] web/src/app.js -o public/build/bundle.js",
+    "start": "node ./bin/www",
+    "postinstall": "npm run build"
+  },
+  "engines": {
+    "npm": "2.14.x"
   },
   "author": "",
   "license": "MIT",
@@ -17,6 +21,7 @@
     "babel-preset-react": "^6.5.0",
     "babelify": "^7.2.0",
     "body-parser": "~1.0.0",
+    "browserify": "^13.0.0",
     "cookie-parser": "~1.0.1",
     "debug": "~0.7.4",
     "express": "~4.0.0",
