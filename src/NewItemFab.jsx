@@ -22,15 +22,12 @@ getInitialState: function() {
 	return {fab: true};
 },
 transform: function(e) {
-	console.log("transform");
 	if(this.touched) {
 		e.stopPropagation();
 	}
 	this.setState({fab: this.touched == false});
 },
-clickDown: function() {
-	console.log("clickDown");
-	this.touched = true;
+clickDown: function() {	this.touched = true;
 },
 clickUp: function() {
 	this.touched = false;
