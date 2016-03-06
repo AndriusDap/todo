@@ -11,36 +11,36 @@ var position = {
 
 	
 module.exports = React.createClass({
-propTypes: {
-	onElementBuilt: React.PropTypes.func
-},
-componentDidMount: function() {
-	window.addEventListener('mousedown', this.transform, false);
-	this.touched = false;
-},
-getInitialState: function() {
-	return {fab: true};
-},
-transform: function(e) {
-	if(this.touched) {
-		e.stopPropagation();
-	}
-	this.setState({fab: this.touched == false});
-},
-clickDown: function() {	this.touched = true;
-},
-clickUp: function() {
-	this.touched = false;
-},
-render: function() {
-	var Content = this.state.fab ? PlusFab : TodoWizard;
-	return  <div onMouseDown={this.clickDown} 
-				onTouchStart={this.clickDown}
-				onMouseUp={this.clickUp}
-				onTouchEnd={this.clickUp}
-				style={position}>
+	propTypes: {
+		onElementBuilt: React.PropTypes.func
+	},
+	componentDidMount: function() {
+		window.addEventListener('mousedown', this.transform, false);
+		this.touched = false;
+	},
+	getInitialState: function() {
+		return {fab: true};
+	},
+	transform: function(e) {
+		if(this.touched) {
+			e.stopPropagation();
+		}
+		this.setState({fab: this.touched == false});
+	},
+	clickDown: function() {	this.touched = true;
+	},
+	clickUp: function() {
+		this.touched = false;
+	},
+	render: function() {
+		var Content = this.state.fab ? PlusFab : TodoWizard;
+		return  <div onMouseDown={this.clickDown} 
+					onTouchStart={this.clickDown}
+					onMouseUp={this.clickUp}
+					onTouchEnd={this.clickUp}
+					style={position}>
 
-				<Content onElementBuilt={this.props.onElementBuilt}></Content>
-			 </div> 			
+					<Content onElementBuilt={this.props.onElementBuilt}></Content>
+				 </div> 			
 	}
 });
