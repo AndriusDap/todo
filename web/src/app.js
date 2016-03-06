@@ -19,28 +19,32 @@ var Todo = function(title, content) {
 
 var App = React.createClass({
 	removeTodo: function(item) {
-		var that = this;
+		var self = this;
 		return function() { 
-			that.setState({
-				todos: that.state.todos.filter(function(f) {
-					return f != item;
-				})
+			var filtered = self.state.todos.filter(function(f) {
+				return f != item;
 			});
 
-			this.restApi.remove('/tasks', {
-				data: item
+			self.setState({
+				todos: filtered
 			});
+
+			if(self.restApi) {
+				self.restApi.post('/tasks', {
+					data: filtered
+				});
+			}
 		}
 	},
 	onElementBuilt: function(title, content){
-		var todo = new Todo(title, content);
+		var todos = this.state.todos.concat(new Todo(title, content));
 		this.setState({
-			todos: this.state.todos.concat(todo)
+			todos: todos
 		});
 
 		if(this.restApi) {
-			this.restApi.create('/tasks', {
-				data: todo
+			this.restApi.post('/tasks', {
+				data: todos
 			});
 		}
 	},

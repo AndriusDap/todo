@@ -20,10 +20,10 @@ module.exports = React.createClass({
         	Cookie.save('user_image', profile.getImageUrl(), cookieOpts);	
         }     
         
-        this.setState({letter: profile.getName()[0]});	
+        this.setState({letter: profile.getName()[0]});
         Cookie.save('user_letter', profile.getName()[0], cookieOpts);
         Cookie.save('user_token', googleUser.getAuthResponse().id_token, cookieOpts);
-
+        console.log(googleUser.getAuthResponse());
         this.props.onTokenReceived(googleUser.getAuthResponse().id_token);
 
 	},
