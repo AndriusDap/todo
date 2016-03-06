@@ -14,17 +14,19 @@ var cardHeight = {
 }
 
 module.exports = React.createClass({
+	propTypes: {
+		title: React.PropTypes.string,
+		text: React.PropTypes.string,
+		onButtonClick: React.PropTypes.func
+	},
 render: function() {
 return	<div style={cardStyle}>
 			<Card.Card>
-				<Card.CardTitle>
-					Task #1
-				</Card.CardTitle>
-				<Card.CardText>Sign in with Google</Card.CardText>
+				<Card.CardTitle>{this.props.title}</Card.CardTitle>
+				<Card.CardText>{this.props.text}</Card.CardText>
 				<Card.CardActions>
-					<FlatButton label="Done"></FlatButton>
-
-					<FlatButton label="Can't do it"></FlatButton>
+					<FlatButton onMouseDown={this.props.onButtonClick} onTouchStart={this.props.onButtonClick} label="Done"></FlatButton>
+					<FlatButton onMouseDown={this.props.onButtonClick} onTouchStart={this.props.onButtonClick} label="Can't do it"></FlatButton>
 				</Card.CardActions>
 			</Card.Card>
 		</div>
