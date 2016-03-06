@@ -20,15 +20,15 @@ module.exports = React.createClass({
 		onButtonClick: React.PropTypes.func
 	},
 render: function() {
-return	<div style={cardStyle}>
-			<Card.Card>
-				<Card.CardTitle>{this.props.title}</Card.CardTitle>
-				<Card.CardText>{this.props.text}</Card.CardText>
-				<Card.CardActions>
-					<FlatButton onMouseDown={this.props.onButtonClick} onTouchStart={this.props.onButtonClick} label="Done"></FlatButton>
-					<FlatButton onMouseDown={this.props.onButtonClick} onTouchStart={this.props.onButtonClick} label="Can't do it"></FlatButton>
-				</Card.CardActions>
-			</Card.Card>
-		</div>
+	return	<div style={cardStyle}>
+				<Card.Card>
+					<Card.CardTitle>{this.props.title}</Card.CardTitle>
+					<Card.CardText>{this.props.text}</Card.CardText>
+					<Card.CardActions>
+						<FlatButton onMouseDown={this.props.onButtonClick} onTouchStart={this.props.onButtonClick} label="Done"></FlatButton>
+						<FlatButton onMouseDown={this.props.onButtonClick} onTouchStart={this.props.onButtonClick} label="Can't do it"></FlatButton>
+					</Card.CardActions>
+				</Card.Card>
+			</div>
 }
 });
