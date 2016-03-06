@@ -62,11 +62,11 @@ var App = React.createClass({
 			this.loadTasks();
 		}
 	},
-	setTasks: function(t) {
-		this.setState({todos: t});
+	setTasks: function(request, todos) {
+		this.setState({todos: todos});
 	},
 	loadTasks: function() {
-		this.restApi.read('/tasks', {}, this.setTasks.bind(this));
+		this.restApi.read('/tasks', {}, this.setTasks);
 	},
 	componentDidMount: function() {
 		this.setState({mounted: true});
