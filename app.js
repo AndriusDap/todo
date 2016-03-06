@@ -5,6 +5,10 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+var mongo = require('mongodb');
+var monk = require('monk');
+var db = monk(process.env.DB ||'localhost:27017/todos');
+
 var api = require('./backend/index');
 
 var app = express();
@@ -17,6 +21,11 @@ app.use(bodyParser.urlencoded({
 
 app.use(logger('dev'));
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(function(req,res,next){
+    req.db = db;
+    next();
+});
 
 app.use('/api', api);
 

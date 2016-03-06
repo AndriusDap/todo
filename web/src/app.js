@@ -50,7 +50,7 @@ var App = React.createClass({
 	},
 	getInitialState: function() {
 		return {
-			todos: [new Todo("Task #1", "Sign in with google")],
+			todos: [] ,
 			mounted: false
 		}
 	},
@@ -66,8 +66,12 @@ var App = React.createClass({
 			this.loadTasks();
 		}
 	},
-	setTasks: function(request, todos) {
-		this.setState({todos: todos});
+	setTasks: function(request, response) {
+		if(response.length) {
+			console.log(response[0].todos);
+			var todos = response[0].todos || [];
+			this.setState({todos: todos});
+		}
 	},
 	loadTasks: function() {
 		this.restApi.read('/tasks', {}, this.setTasks);
@@ -77,6 +81,8 @@ var App = React.createClass({
 
 		if(this.restApi) {
 			this.loadTasks();
+		} else {
+			this.setState({todos: [new Todo("Task #1", "Sign in with google")]});
 		}
 	},
 	render: function(){

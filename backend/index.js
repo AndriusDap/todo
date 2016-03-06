@@ -23,10 +23,13 @@ router.get('/tasks', function(req, res) {
 			res.json(err);
 			return;
 		}
-
-		res.json([
-			{title: "title", content: "content"},
-		]);
+		var db = req.db;
+		todos = [];
+		db.get("todos").find({user: token}, {}, function(err, t){
+			console.log(err);
+			console.log(t);
+			res.json(t);
+		});
 	});
 });
 
@@ -37,8 +40,13 @@ router.post('/tasks', function(req, res) {
 			res.json(err);
 			return;
 		}
-
-		console.log(req.body);
+		var db = req.db;
+		db.get("todos").remove({user: token}, function(err, t){
+			console.log(err);	
+		});
+		db.get("todos").insert({user: token, todos: req.body}, function(err, t){
+			console.log(err);	
+		});
 		res.status(200);
 		res.json("ok");
 	});
