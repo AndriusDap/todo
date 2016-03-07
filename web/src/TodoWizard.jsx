@@ -5,10 +5,6 @@ var Card = require('material-ui/lib/card');
 var FlatButton = require('material-ui/lib/flat-button');
 var TextField = require('material-ui/lib/text-field');
 
-var cardStyle = {
-	width: '400px'
-};
-
 module.exports = React.createClass({
 	propTypes: {
 		onElementBuilt: React.PropTypes.func
@@ -37,7 +33,7 @@ module.exports = React.createClass({
 		this.setState({content: content, error: error});
 	},
 	render: function() {
-		return	<div style={cardStyle}>
+		return	<div className='reactive-card'>
 					<Card.Card>
 						<form onSubmit={this.build}>
 							<Card.CardTitle>

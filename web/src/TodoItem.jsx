@@ -4,7 +4,6 @@ var FlatButton = require('material-ui/lib/flat-button');
 
 var width = 400;
 var cardStyle = {
-	width: width,
 	margin: "auto",
 	paddingTop: "20"
 }
@@ -20,7 +19,7 @@ module.exports = React.createClass({
 		onButtonClick: React.PropTypes.func
 	},
 render: function() {
-	return	<div style={cardStyle}>
+	return	<div className='reactive-card' style={cardStyle}>
 				<Card.Card>
 					<Card.CardTitle>{this.props.title}</Card.CardTitle>
 					<Card.CardText>{this.props.text}</Card.CardText>
